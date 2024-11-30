@@ -76,3 +76,6 @@ The program provides a menu-based system for interacting with the library:
    ```bash
    git clone https://github.com/msrbl/library-console-app
    cd library-console-app
+2. Run the script in the terminal:
+   ```bash
+   python library.py
