@@ -97,15 +97,26 @@ class Library:
                 print(f"\nКнига с ID {book_id} не найдена.")
 
     def find_books(self, search_condition):
-        """Поиск книг в библиотеке по названию, автору или году."""
+        """
+        Поиск книг в библиотеке.
+        Если условие поиска совпадает со словом из названия,
+        фамилией автора или это год издания книги, добавляет
+        книгу к выводу и выводит все такие экземпляры.
+        """
         if self.is_library_empty():
             return
         else:
             results = []
-
+            search_condition = search_condition.lower().strip().split()
+            
             for book in self.books:
-                if search_condition.lower() in (book.title.lower() + book.author.lower() + str(book.year)):
-                    results.append(book)
+                for search_word in search_condition:
+                    if any(word.lower() == search_word for word in book.title.split()):
+                        results.append(book)
+                    elif search_word == book.author.split('.')[-1].lower():
+                        results.append(book)
+                    elif search_word == book.year:
+                        results.append(book)
             return results
 
     def change_status(self, book_id):
@@ -212,7 +223,7 @@ def main():
                 print("ID должен быть числом.")
 
         elif action == "3":
-            search_term = input("\nВведите строку для поиска: ")
+            search_term = input("\nВведите строку для поиска (название, фамилия автора или год издания): ")
             results = library.find_books(search_term)
 
             if results:
