@@ -1,4 +1,5 @@
 # Library Console Application
+[![ru](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/msrbl/library-console-app/blob/main/README.md)
 
 **Library Console Application** is a Python-based tool for managing a local library. The application allows users to add, remove, search, display, and update the status of books stored in a text file. 
 
