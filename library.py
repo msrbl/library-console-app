@@ -65,7 +65,7 @@ class Library:
     def save_books_as_txt(self):
         """Перезаписывает и сохраняет файл хранилища книг."""
         with open(self.storage_file, "w+", encoding="utf-8") as txt_file:
-            header = f"{'ID':<4}  {'Название':<40}  {'Автор':<30}  {'Год':<6}  {'Статус':<9}"
+            header = f"{'ID':<4}   {'Название':<40}   {'Автор':<30}   {'Год':<6}   {'Статус':<9}"
             txt_file.write(header + "\n")
             txt_file.write("-" * len(header) + "\n")
 
