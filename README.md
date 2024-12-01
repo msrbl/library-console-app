@@ -1,81 +1,78 @@
-# Library Console Application
+# Консольное приложение "Библиотека"
 
-**Library Console Application** is a Python-based tool for managing a local library. The application allows users to add, remove, search, display, and update the status of books stored in a text file. 
+**Консольное приложение "Библиотека"** — это инструмент на Python для управления локальной библиотекой. Приложение позволяет добавлять, удалять, искать книги, отображать список книг и обновлять их статус. Все данные хранятся в текстовом файле.
 
-## Features
+## Возможности
 
-1. **Add a Book**
-   - Add a new book by providing its title, author, and year of publication.
-   - Each book is assigned a unique ID and the default status "в наличии".
+1. **Добавление книги**
+   - Добавьте новую книгу, указав её название, автора и год издания.
+   - Каждой книге автоматически присваивается уникальный ID и статус по умолчанию — "в наличии".
 
-2. **Remove a Book**
-   - Delete a book from the library using its unique ID.
+2. **Удаление книги**
+   - Удалите книгу из библиотеки, используя её уникальный ID.
 
-3. **Search for Books**
-   - Search for books by title, author, or year of publication.
+3. **Поиск книг**
+   - Поиск книги по названию, автору или году издания.
 
-4. **Display All Books**
-   - Display a tabular list of given books with their ID, title, author, year, and status.
+4. **Отображение всех книг**
+   - Просматривайте таблицу со списком книг, включая их ID, название, автора, год издания и статус.
 
-5. **Change Book Status**
-   - Update the status of a book (e.g., from "в наличии" to "выдана" and vice versa) using its ID.
+5. **Изменение статуса книги**
+   - Обновите статус книги (например, с "в наличии" на "выдана" и наоборот) с помощью её ID.
 
-6. **Persistent Storage**
-   - Books are stored in a text file (`storage.txt` or `storage_test.txt`). If the file doesn't exist, it is created automatically with a header row.
+6. **Хранилище данных**
+   - Книги сохраняются в текстовом файле (`storage.txt` или `storage_test.txt`). Если файл отсутствует, он создаётся автоматически.
 
 ---
 
-## Class Overview
+## Описание классов
 
 ### `Book`
-Represents a book in the library.
+Представляет класс книги в библиотеке.
 
-- **Attributes**:
-  - `id` (int): Unique identifier for the book.
-  - `title` (str): Title of the book.
-  - `author` (str): Author of the book.
-  - `year` (int): Year of publication.
-  - `status` (str): Status of the book, either "в наличии" or "выдана".
+- **Атрибуты**:
+  - `id` (int): Уникальный идентификатор книги.
+  - `title` (str): Название книги.
+  - `author` (str): Автор книги.
+  - `year` (int): Год издания.
+  - `status` (str): Статус книги, "в наличии" или "выдана".
   
-- **Methods**:
-  - `to_text()`: Converts book attributes to a formatted string for saving to a file.
-  - `from_text(line)`: Creates a `Book` object from a string of text with || delimiters.
+- **Методы**:
+  - `to_text()`: Преобразует атрибуты книги в форматированную строку для сохранения в файл.
+  - `from_text(line)`: Создаёт объект `Book` из строки текста с разделителями `||`.
 
 ### `Library`
-Manages the collection of books and handles all operations related to the library.
+Управляет коллекцией книг и выполняет все операции, связанные с библиотекой.
 
-- **Methods**:
-  - `load_books_from_txt()`: Loads books from text file. Creates the file with a header if it doesn't exist.
-  - `save_books_as_txt()`: Saves the current state of the library and overwriting it.
-  - `add_book(title, author, year)`: Adds a new book to the library and saves it.
-  - `remove_book(book_id)`: Removes a book from the library by its ID.
-  - `find_books(search_condition)`: Search for books in the library by title, author, or year.
-  - `change_status(book_id)`: Changes the status of the book. Valid values are “в наличии”, “выдана”.
-  - `display_books(books)`: Displays a specified list of books in the console.
-  - `find_book_by_id(book_id)`: Search for a book by unique identifier (helper method).
-  - `is_library_empty()`: Checks if the library is empty and prints a message if so (helper method).
+- **Методы**:
+  - `load_books_from_txt()`: Загружает книги из текстового файла. Если файл отсутствует, создаётся новый с заголовком.
+  - `save_books_as_txt()`: Сохраняет текущее состояние библиотеки, перезаписывая файл.
+  - `add_book(title, author, year)`: Добавляет новую книгу в библиотеку и сохраняет изменения.
+  - `remove_book(book_id)`: Удаляет книгу из библиотеки по её ID.
+  - `find_books(search_condition)`: Выполняет поиск книг по названию, автору или году издания.
+  - `change_status(book_id)`: Изменяет статус книги. Допустимые значения: "в наличии", "выдана".
+  - `display_books(books)`: Отображает указанный список книг в консоли.
+  - `find_book_by_id(book_id)`: Находит книгу по уникальному идентификатору (вспомогательный метод).
+  - `is_library_empty()`: Проверяет, пуста ли библиотека, и выводит сообщение (вспомогательный метод).
 
-### Main Functionality
-The program provides a menu-based system for interacting with the library:
-1. Add Book
-2. Remove Book
-3. Search Books
-4. Display All Books
-5. Change Book Status
-6. Exit
+### Основная функциональность
+Программа предоставляет меню для взаимодействия с библиотекой:
+1. Добавить книгу
+2. Удалить книгу
+3. Искать книги
+4. Показать все книги
+5. Изменить статус книги
+6. Выход
 
 ---
 
-## Installation and Setup
+## Установка и настройка
 
-### Prerequisites
-- Python 3.6 or higher.
+### Требования
+- Python 3.6 или выше.
 
-### Installation
-1. Clone the repository:
+### Установка
+1. Склонируйте репозиторий:
    ```bash
    git clone https://github.com/msrbl/library-console-app
    cd library-console-app
-2. Run the script in the terminal:
-   ```bash
-   python library.py
