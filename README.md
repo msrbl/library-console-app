@@ -77,3 +77,6 @@
    ```bash
    git clone https://github.com/msrbl/library-console-app
    cd library-console-app
+2. Запустите скрипт в терминале:
+   ```bash
+   python library.py
