@@ -1,5 +1,4 @@
 # Консольное приложение "Библиотека"
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/msrbl/library-console-app/blob/main/README-en.md)
 
 **Консольное приложение "Библиотека"** — это инструмент на Python для управления локальной библиотекой. Приложение позволяет добавлять, удалять, искать книги, отображать список книг и обновлять их статус. Все данные хранятся в текстовом файле.
 
@@ -79,4 +78,4 @@
    cd library-console-app
 2. Запустите скрипт в терминале:
    ```bash
-   python library.py
+   python start.py

@@ -58,7 +58,8 @@ class Library:
                     if book:
                         books.append(book)
         except FileNotFoundError:
-            print(f"Файл {self.storage_file} не найден. Для создания новой библиотеки выберите действие 'Добавить книгу'.")
+            with open(self.storage_file, "w", encoding="utf-8") as txt_file:
+                pass
             pass
         return books
 
@@ -107,15 +108,15 @@ class Library:
             return
         else:
             results = []
-            search_condition = search_condition.lower().strip().split()
-            
+            search_condition = search_condition.lower().strip().split(' ')
+
             for book in self.books:
                 for search_word in search_condition:
                     if any(word.lower() == search_word for word in book.title.split()):
                         results.append(book)
                     elif search_word == book.author.split('.')[-1].lower():
                         results.append(book)
-                    elif search_word == book.year:
+                    elif search_word == str(book.year):
                         results.append(book)
             return results
 
@@ -168,86 +169,3 @@ class Library:
             print("\nБиблиотека пуста. Для добавления книг выберите действие 'Добавить книгу'.")
             return True
         return False
-
-def show_menu():
-    """Показывает меню и возвращает выбранное действие."""
-    options = {
-        "1": "Добавить книгу",
-        "2": "Удалить книгу",
-        "3": "Искать книги",
-        "4": "Показать все книги",
-        "5": "Изменить статус книги",
-        "6": "Выход"
-    }
-
-    print("\nНажмите Enter для продолжения")
-    input()
-    
-    for key, value in options.items():
-        print(f"{key}. {value}")
-    return input("Выберите желаемое действие (введите цифру): ")
-
-def main():
-    """
-    Основная функция консольного приложения.
-
-    Осуществляет выбор действия через метод show_menu().
-    Также обрабатывает ошибки и неправильный ввод.
-    """
-
-    keyword = input("\nДля запуска приложения с тестовой библиотекой напишите ключевое слово 'test'\n")
-    print("\nЗагружаем библиотеку из файла.")
-    if keyword == "test":
-        library = Library("storage_test.txt")
-    else:
-        library = Library("storage.txt")
-
-    while True:
-        action = show_menu()
-
-        if action == "1":
-            title = input("\nВведите название книги: ")
-            author = input("Введите автора книги: ")
-
-            try:
-                year = int(input("Введите год издания книги: "))
-                library.add_book(title, author, year)
-            except ValueError:
-                print("Год должен быть числом.")
-
-        elif action == "2":
-            try:
-                book_id = int(input("\nВведите ID книги: "))
-                library.remove_book(book_id)
-            except ValueError:
-                print("ID должен быть числом.")
-
-        elif action == "3":
-            search_term = input("\nВведите строку для поиска (название, фамилия автора или год издания): ")
-            results = library.find_books(search_term)
-
-            if results:
-                library.display_books(results)
-            else:
-                print("Книги не найдены.")
-
-        elif action == "4":
-            library.display_books(library.books)
-
-        elif action == "5":
-            try:
-                book_id = int(input("\nВведите ID книги: "))
-                library.change_status(book_id)
-            except ValueError:
-                print("ID должен быть числом.")
-
-        elif action == "6":
-            print("Выход из программы.")
-            break
-
-        else:
-            print("\nНекорректный выбор. Попробуйте снова.")
-
-
-if __name__ == "__main__":
-    main()
